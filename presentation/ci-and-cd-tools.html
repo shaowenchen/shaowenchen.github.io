@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>持续集成与部署工具 - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+
+<section>
+
+<section data-markdown>
+<script type="text/template">
+## 持续集成与部署工具
+- Jenkins
+- GitLab
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Jenkins - Pipeline
+- stage - Pipeline 里面 Groovy 引入的一个虚拟概念，是一些 step 的集合。
+- step - Jenkins 里面 job 中的最小单元，可以认为是一个脚本的调用或一个插件的调用。
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Jenkins - Groovy
+Groovy 是一门动态语言，支持在 Java 平台上进行 Java 编程，使用方式基本与 Java 代码相同。
+```groovy
+node("master"){  
+    stage 'one'
+    echo "start one"
+    sleep 1
+    stage 'two'
+    echo "start two"
+    sleep 3
+    stage 'three'
+    echo "start three"
+    sleep 5
+}
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Jenkins - Github
+#### GitHub
+- Create Maven Project
+- Personal Access Token
+- WebHook
+
+#### Jenkins
+- Create Maven Project
+- GitHub URL
+- Git Push & Build
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### GitLab-Runner
+- GitLab 每一个项目都会定义一个集成脚本，用来自动化完成一些集成工作
+- .gitlab-ci.yml：在git项目的根目录下的一个文件，也就是集成脚本
+- GitLab-Runner：用于执行构建任务
+- Pipeline、Stages、Jobs
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## End
+</script>
+</section>
+
+</section>
+
+    <!-- End -->
+  </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>

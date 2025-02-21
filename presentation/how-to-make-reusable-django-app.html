@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>编写可复用的 Django App - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+
+<section> 
+<section data-markdown>
+<script type="text/template">
+## 编写可复用的 Django App
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### 问题 & 答案
+![](/blog/images/2017/10/project-app-structure.png)
+</script>
+</section>
+
+<section data-markdown>
+<style>img{}</style>
+<script type="text/template">
+<h3>什么是可复用的 Django App</h3>
+
+<p><img src="/blog/images/2017/10/so-easy.png" style="width:100px;height:100px;"/>能够轻松集成到 Django Project</p> <!-- .element: class="fragment" data-fragment-index="1" -->
+<p><img src="/blog/images/2017/10/darts.png" style="width:100px;height:100px;"/>提供非常明确的功能</p> <!-- .element: class="fragment" data-fragment-index="2" -->
+<p><img src="/blog/images/2017/10/focus.png" style="width:100px;height:100px;"/>专注做一件事并把它做到最好</p> <!-- .element: class="fragment" data-fragment-index="3" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Django App 实践建议
+- 约定的目录结构 <!-- .element: class="fragment" data-fragment-index="1" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### 约定的目录结构
+<aside class="notes">
+Django App 是一个Python包，特意于 Django 项目。一个可复用的 Django App 应该具有约定的目录模块，比如 models、urls、views 等模块。
+</aside>
+```
+django_app_template
+├ admin.py // admin 页面的显示和定制化
+├ constants.py //  用于存放常量
+├ forms.py // 用于验证前端的数据
+├ middleware.py // 提供的中间件
+├ models.py
+├ README // 用于描述相关说明信息
+├ requirements.txt文件 // 用于记录相关依赖
+├ settings.py // 相关配置
+├ static/django_app_template // 静态文件
+├ templates/django_app_template // 模板文件
+├ tests.py // 测试用例
+├ urls.py
+├ utils.py // 使用的工具函数
+└ views.py
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Django App 实践建议
+- 约定的目录结构
+- 相互隔离 <!-- .element: class="fragment" data-fragment-index="2" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### 相互隔离
+- 为了唯一标识每个 Django App，以 App 名作为ID是个不错的选择。App 应该明确自己的url前缀，数据库表名，全局的常、变量名，同时不能相互的依赖。
+- 命名规则
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Django App 实践建议
+- 约定的目录结构
+- 相互隔离
+- 说明文档 <!-- .element: class="fragment" data-fragment-index="3" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### 说明文档
+
+- Django App 的功能
+- 实施细节
+- 依赖关系
+- 可能的风险
+- 甚至联系方式
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# End
+</script>
+</section>
+
+</section>
+
+        <!-- End -->
+    </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>

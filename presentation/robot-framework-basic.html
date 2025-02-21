@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>Robot Framework 基础篇 - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+
+<section>
+
+<section data-markdown>
+<script type="text/template">## Robot Framework 基础篇
+<aside class="notes">
+    大家之前没有接触自动化测试。
+    介绍 Web 自动化测试的原理。
+    介绍自动化测试框架 Robot Framework。
+    通过本次分享，希望大家能着手开始写测试用例。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 为什么需要自动化测试
+<aside class="notes">
+    首先我们一起思考一下，为什么需要自动化测试。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 遇到什么问题
+1. 工作量大  <!-- .element: class="fragment" data-fragment-index="1" -->
+2. 合作被动  <!-- .element: class="fragment" data-fragment-index="2" -->
+3. 缺乏成长  <!-- .element: class="fragment" data-fragment-index="3" -->
+<aside class="notes">
+    我们人工做测试遇到了什么问题呢？
+    第一个就是工作量大。 功能测试、回归测试、上线验证、撰写报告消耗大量时间。
+    第二个就是合作被动。测试每次都是等待开发交付之后，才开始测试。测试完了，等待开发下一次交付。总有测不完的功能。
+    第三缺乏成长。无论从工资，还是晋升，或者是技能成长性，测试人员都比不上同等级的开发。原因很简单，公司可以不要测试，但可以不要开发吗？
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">## 自动化测试
+<h6 class="fragment" data-fragment-index="1">人工 >> 自动 </h6>
+<center><div><img style="height: 250px;width:250px;" class="fragment" data-fragment-index="2" src="/blog/images/2018/08/brick-human.jpg"></img><img style="height: 250px;width:250px;margin-left:20px;" class="fragment" data-fragment-index="3" src="/blog/images/2018/08/brick-machine.jpg"></img></div></center>
+<aside class="notes">
+    然后，自动化测试就来了。测试也可以写代码，也可以提出解决方案，还能推动开发。
+    自动化测试是做什么呢？就是人工转自动的过程。
+    过去需要一块一块搬得砖，现在通过机器不仅能帮你搬，还能帮你铺好。
+    测试的工作转向了制造测试工具，学习这些工具，提供解决方案上。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 怎么做**功能**自动化测试
+<aside class="notes">
+    再回忆一下，以前是怎么做功能自动化测试的
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 回忆一下
+
+1. 写测试方案<!-- .element: class="fragment" data-fragment-index="1" -->
+2. 打开浏览器<!-- .element: class="fragment" data-fragment-index="2" -->
+3. <div style="color:red;">点点点</div><!-- .element: class="fragment" data-fragment-index="3" -->
+4. 写测试报告<!-- .element: class="fragment" data-fragment-index="4" -->
+<aside class="notes">
+    首先得写测试方案吧，不过这个环境，现在没有被重视。最近看到有个项目，上来就是打开浏览器，然后点点点，写测试报告。
+    事后再补测试方案。
+    但一个正常的测试流程，就是这四步。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 找轮子
+1. <div class="fragment" data-fragment-index="1">写测试方案？<div style="color:yellow;" class="fragment" data-fragment-index="2">╭(╯^╰)╮</div><div>
+2. <div class="fragment" data-fragment-index="3">打开浏览器？<div style="color:green;" class="fragment" data-fragment-index="4">Selenium</div></div>
+3. <div class="fragment" data-fragment-index="5">点点点？<div style="color:green;" class="fragment" data-fragment-index="6">Robot Framework</div></div>
+4. <div class="fragment" data-fragment-index="7">测试报告？<div style="color:green;" class="fragment" data-fragment-index="8">Rbot Framework</div></div>
+<aside class="notes">
+    现在开源的东西这么多，为了自动化前面分析的四步，我们也不用自己造轮子。
+    先去找找。
+    第一步，写测试用例？这个还在找。但是不要气馁。
+    第二步，打开浏览器。找到了 selenium
+    第三步，点点点。点点点是在干吗？点点点就是在根据你的测试用例逻辑，操作浏览器。找到了一个 Robot Framework
+    第四步，写测试报告。成功了多少，失败了多少，通过率多少。这个 Robot Framework 也可以。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">## Selenium
+<aside class="notes">
+    首先给大家介绍一下 selenium。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### Selenium 简介
+<h6>Selenium 是一个 Thoughtworks 公司的集成测试工具。</h6><h6>开源、免费、多浏览器支持、多平台支持、多语言支持</h6>
+<center><div><img style="height: 150px;width:250px;"  src="/blog/images/2018/08/thoughtworks.png"></img><img style="height: 150px;width:150px;margin-left:20px;"  src="/blog/images/2018/08/selenium-logo.png"></img></div></center>
+<aside class="notes">
+    首先给大家介绍一下 selenium。
+    selenium 是 thoughtworks 公司开发的一个测试工具。
+    selenium 可以说是为测试而生，用于驱动浏览器。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### Selenium 工作原理
+<img style="height: 500px;width:500px;" src="/blog/images/2017/08/selenium.png"></img>
+<aside class="notes">
+    在做 Web 自动化测试的过程中，全靠 selenium 控制浏览器。
+    这里简单介绍一下 selenium 的工作原理。
+    从 selenium2 开始，selenium 里面整合了一个 WebDriver。
+    WebDriver 是按照 Client-Server 的模式设计的。
+    Server 端就是启动后的浏览器。Selenium 会将目标浏览器绑定到特定的端口。
+    Client 端 ，也就是测试脚本， 主要发送 HTTP 请求 Json 数据给 Sever 端，控制 Server 端的浏览器行为。
+    WebDriver 用于连接 Server 端和 Client 端。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">## Robot Framework
+<aside class="notes">
+    接下来是 Robot Framework。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### Robot Framework 简介
+<h6>Python 实现的基于关键字驱动的自动化测试框架。</h6><h6>可以实现 Web 自动化测试、Windows GUI 测试、移动测试、数据库测试、文件对比测试、HTTP 测试。</h5>
+<center><div><img style="height: 150px;width:300px;"  src="/blog/images/2018/08/python.jpg"></img><img style="height: 150px;width:150px;margin-left:20px;"  src="/blog/images/2018/08/robot.png"></img></div></center>
+<aside class="notes">
+    Robot Framework 是一个 Python 写的自动化测试框架。既能够实现 Web 自动化测试，还可以实现 APP 端的自动化测试。
+    选择 Robot Framework 的主要原因:
+    Python 写的，与我们贴近。
+    关键字驱动，写测试用例非常方便。
+    github 活跃，2.5K star
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 自动化测试架构
+<img style="height: 500px;width:500px;" src="/blog/images/2018/08/how-robot-framework-work.png"></img>
+<aside class="notes">
+    还是先介绍一下自动化测试的架构。
+    分为四层。从上往下说。
+    最上面是测试数据，测试用例这些。
+    下面是 Robot Framework ，用于解释这些测试数据语法。
+    再下面，就是一些测试库，比如驱动浏览器的 selenium 或者 驱动 app 的 appium
+    最底层，就是我们操作系统了，比如我们的 Windows 、OS X 等。上面所有的操作都必须操作系统支持。
+    我们主要需要关注的是上面这三层。
+</aside>
+</script>
+</section>
+
+<section data-markdown=""><script type="text/template">### 如何安装
+* 安装 robot framework
+```shell
+pip install robotframework
+```
+* 安装必要的 library
+```shell
+pip install robotframework-selenium2library
+pip install robotframework-ftplibrary
+pip install robotframework-excellibrary
+```
+</script>
+<aside class="notes">
+    刚才讲到的四层架构只用关注三层。
+    最上层测试用例得自己写。
+    中间的两层通过这几个命令就可以搞定。
+</aside>
+</section>
+
+<section data-markdown=""><script type="text/template"> ## 如何写
+
+* 安装 Robot Framework IDE
+```shell
+pip install robotframework-ride
+```
+<aside class="notes">
+    实际上，我们只需要关注一层，就是如何写测试用例。
+    Robot Framework IDE 是 Robot Framework 框架的集成开发环境。
+    安装很简单，一条命令。
+    演示一下。
+</aside>
+</script>
+</section>
+
+<section data-markdown=""><script type="text/template"> ### Robot Framework IDE
+<img style="height: 500px;width:900px;" src="/blog/images/2018/08/ride.png"></img>
+<aside class="notes">
+    运行起来，就是这个样子。
+    全部的测试用例都在这上面完成。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### Example
+<img style="height: 500px;width:900px;" src="/blog/images/2018/08/robot-framework-demo.gif"></img>
+<aside class="notes">
+    这个是运行的效果。
+    这是一个简单的 demo。
+    打开一个浏览器，然后截屏，就可以了。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 生成报告
+<img style="height: 500px;width:900px;" src="/blog/images/2018/08/report.png"></img>
+<aside class="notes">
+    最后还会生成一个报告，告诉你总共有多少测试用例，通过了多少，通过率是多少。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 查看日志
+<img style="height: 500px;width:900px;" src="/blog/images/2018/08/log.png"></img>
+<aside class="notes">
+    日志，主要是用于调试，分析错误。
+    日志里面会有更详细的执行步骤记录。
+    你可以看到每一步做了什么，在哪一步失败了，错误提示是什么。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 基本术语
+* 测试用例 - Test Case
+* 测试套件 - Test Suite
+<aside class="notes">
+    测试用例就是用来验证一个逻辑是否符合预期的验证过程。
+    测试套件就是一系列测试用例的集合。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 关键字
+* 系统关键字，通过加载 Library 引入
+* 用户关键字，通过加载 Resource 引入
+<aside class="notes">
+    关键字类似函数。分为系统关键字和用户自定义关键字。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 库
+* 系统库，如 XML、String 等。
+* 用户自定义库。单独安装的一些第三方库，如 seleniumlibrary 等。也可以是自己写的一些 Python 文件，比如 send_mail.py 等。
+<aside class="notes">
+    库用来封装和复用关键字。Robot Framework 库包括系统库和用户自定义库。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">### 目录结构
+```shell
+ProjectName
+|---cases
+|------ 测试套件
+|--------- 测试用例
+|---keywords （存放关键字）
+|------common.txt （通用关键字）
+|---res（附件资源文件夹，放图片、表格、文件等）
+|---global.txt（存放一些必须的全局变量）
+|---locators （存放页面上一些固定的元素，进行统一管理）
+|---lib （自己写的一些库 Python 库文件）
+```
+<aside class="notes">
+    为了方便维护和交流，建议大家稍微统一一下目录的结构。
+    在 case 目录下，在
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">## 需要做什么
+<aside class="notes">
+    最后讲一下，目标。
+    我们做自动化测试时，需要注意什么，往哪个方向走。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template"> ### 积累场景
+* 表格填充<!-- .element: class="fragment" data-fragment-index="1" -->
+* 文件上传<!-- .element: class="fragment" data-fragment-index="2" -->
+* 图形拖拽<!-- .element: class="fragment" data-fragment-index="3" -->
+* ...<!-- .element: class="fragment" data-fragment-index="4" -->
+<aside class="notes">
+    第一个是积累场景。
+    我们主要做的是运维工具，运维工具有它自己的特点。
+    我们需要去积累运维场景的测试点。
+    比如说，表格填充、。。。
+    把这些测试用例的写法做成一个demo，当其他人需要时，可以快速复用。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template"> ### 可维护性
+* 前端重构<!-- .element: class="fragment" data-fragment-index="1" -->
+* 业务逻辑变更<!-- .element: class="fragment" data-fragment-index="2" -->
+* 测试数据变更<!-- .element: class="fragment" data-fragment-index="3" -->
+<aside class="notes">
+    这是一个需要思考的点。
+    前端重构之后，怎么办？
+    业务逻辑变更之后，怎么办？
+    测试数据变更之后，怎么办？
+    我们需要去考虑测试的可维护性。
+</aside>
+ </script>
+</section>
+
+<section data-markdown>
+<script type="text/template"> ### 测试覆盖度
+<aside class="notes">
+    这是一个难点。
+    怎么去评估测试的质量，是不是每种可能性都能覆盖？即使不能全部覆盖，如何设计测试用例，能覆盖90%的核心功能？这部分需要大家一起积极思考。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template"> ### CI 集成
+<aside class="notes">
+    CI 集成的目的，是进一步解放测试的双手。将测试交给机器自动执行，或者开发自测，转被动为主动。
+    这里有一个 Jenkins 的集成方案，可以给大家演示一下。
+    最后的落地方案，还在研究中。
+</aside>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template"> ## Q & A
+</script>
+</section>
+
+</section>
+
+        <!-- End -->
+    </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>
