@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>云原生下的 DevOps 平台 - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+
+<section data-markdown><script type="text/template">## 云原生下的 DevOps 平台</script></section>
+
+<section data-markdown><script type="text/template">
+## 个人简介
+- 2019-至今, 青云, KubeSphere <!-- .element: class="fragment" data-fragment-index="1" -->
+- 2016-2019, 腾讯 IEG, BlueKing <!-- .element: class="fragment" data-fragment-index="2" -->
+</script></section>
+
+<section data-markdown><script type="text/template">
+## 什么是云原生
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Pivotal
+- 2015年，12-Factor、面向微服务、抗脆弱 <!-- .element: class="fragment" data-fragment-index="1" -->
+- 2017年，可观测性、模块化、可替代性、可处理性 <!-- .element: class="fragment" data-fragment-index="2" -->
+- 2019年，DevOps、CD、微服务、容器 <!-- .element: class="fragment" data-fragment-index="3" -->
+<aside class="notes">
+Pivotal 是云原生的提出者，对云原生的定义也在不断的进化。
+</aside>
+</script></section>
+
+<section data-markdown><script type="text/template">
+### CNCF
+- 2015年，容器化、微服务、编排调度 <!-- .element: class="fragment" data-fragment-index="1" -->
+- 2018年，不可变基础设施，声明式 API，服务网格 <!-- .element: class="fragment" data-fragment-index="2" -->
+</script></section>
+
+<section data-markdown><script type="text/template">
+## 什么是 DevOps
+<aside class="notes">
+云原生离不开 DevOps，每个人心目中对 DevOps 都有着不同的定义。
+</aside>
+</script></section>
+
+<section data-markdown><script type="text/template">
+### 端到端的价值交付
+![](/blog/images/2020/11/dev-past-now.png)
+</script></section>
+
+<section data-markdown><script type="text/template">
+### 自动化工具
+![](/blog/images/2020/11/devops-flow.png)
+</script></section>
+
+<section data-markdown><script type="text/template">
+## 如何开发一个 CICD 工具
+<aside class="notes">
+我们不讨论那么大的话题，DevOps 肯定需要 CICD 工具支持。那么如何设计一个  CICD 工具呢？一种新的 DSL 语言。
+</aside>
+</script></section>
+
+<section data-markdown><script type="text/template">
+### 定义一套 DSL
+![](/blog/images/2020/11/cicd-dsl.png)
+</script></section>
+
+<section data-markdown><script type="text/template">
+### Operator 连接万物
+![](/blog/images/2020/11/operator-connect.png)
+<aside class="notes">
+在云原生时代，通过 Operator 连通各个系统。
+</aside>
+</script></section>
+
+<section data-markdown><script type="text/template">
+### DevOps Operator
+![](/blog/images/2020/11/devops-operator.png)
+<aside class="notes">
+</aside>
+</script></section>
+
+<section data-markdown><script type="text/template">
+## 遇到的挑战
+- CRD == DataBase ？
+- DevOps 与 Jenkins 耦合紧密
+</script></section>
+
+<section data-markdown><script type="text/template">
+## 未来展望
+</script></section>
+
+<section data-markdown><script type="text/template">
+### 统一的 Out DSL
+<img src="/blog/images/2020/11/future-devops.png" height="600" width="700">
+<aside class="notes">
+具有通用的抽象模型，能够对接主流的 CICD 工具。
+</aside>
+</script></section>
+<section data-markdown><script type="text/template">
+## 谢谢大家 & QA
+</script></section>
+
+    <!-- End -->
+  </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>
