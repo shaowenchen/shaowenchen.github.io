@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>SaaS 开发的思考 - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+
+<style>
+.horizontal-block-3 {
+  padding-top: 50px;
+  height: 200px;
+}
+.horizontal-block-3 div{
+  width: 33.3%;
+  float: left;
+}
+.horizontal-block-3 img {
+  height: 200px;
+}
+</style>
+
+<section>
+<h2>SaaS 开发的思考</h2>
+<aside class="notes">
+在 SaaS 开发小组待了一段时间。关于 SaaS 开发方向有一些个人的思考，分享给大家。出发点主要是三个方面：开发效率、迭代成本、项目可控。
+</aside>
+</section>
+
+<section>
+<div class="horizontal-block-3">
+  <div>
+    <img src="/blog/images/2018/04/efficiency.png">
+    <p>开发效率</p>
+  </div>
+  <div>
+    <img src="/blog/images/2018/04/cost.png">
+    <p>迭代成本</p>
+  </div>
+  <div>
+    <img src="/blog/images/2018/04/control.png">
+    <p>项目可控</p>
+  </div>
+</div>
+<aside class="notes">
+    出发点主要有三个方面：开发效率，迭代成本，项目可控。开发效率很好理解，越快完成项目效率越高。如果一个项目开发完之后，就不需要维护，那么我们只需要快就可以。
+    但是，往往项目需要维护、需要迭代，而且是不同的人轮流维护，甚至需要改进，比如并发量增大，需要优化 IO 等。这就引入了另外一个需要考虑的方面，维护成本。开始考虑项目内成员的合作、项目外人员交接。
+    有了效率，考虑了维护，在时间、人力有限的情况下，这两相互制约啊。这时就需要考虑第三方面，项目可控，就是在有限的资源条件下，如何完成项目。甚至在项目提出提前完工的情况下，能够通过砍功能、加人力来保证项目如期完成。
+</aside>
+</section>
+
+<section>
+<h3>我们的优势</h3>
+<ul>
+<li class="fragment" >熟悉 PaaS 服务</li>
+<li class="fragment" >SaaS 项目多，有场景去积累</li>
+<li class="fragment" >接近终端用户和 SaaS 开发者</li>
+<ul>
+<aside class="notes">
+我们的优势
+</aside>
+</section>
+
+<section data-background=" /blog/images/2018/04/flow_chart_process.jpg">
+<h2 style="color:black">第一阶段：串流程</h2>
+<aside class="notes">
+    SaaS 承担替代人工、串流程的职能。利用 SaaS，可以快速地将梳理好的流程固化下来。这一阶段的特点是，小系统。主要是一些敏感、频繁的高成本操作推动 SaaS 的开发。
+</aside>
+</section>
+
+<section>
+<h3>替代人工</h3>
+<p><img src="/blog/images/2018/04/process-mapping.jpg"/></p>
+<aside class="notes">
+比如，准备开展一个培训，每次培训时，需要给学员分配一批主机。每次都需要腾讯云购买机器，去 CC 创建业务，分配主机，添加权限，添加模块等。一次流程下来，估计几个小时就过去了。这时就可以开发一个 SaaS 将这些流程串起来，只需要点一点，复制粘贴，分分钟就可以搞定。这样极大地提高了企业的效率。
+</aside>
+</section>
+
+<section>
+<h3>小系统</h3>
+<p><img src="/blog/images/2018/04/simple-process.jpg"/></p>
+<aside class="notes">
+  对于简单流程，通过 SaaS 能很快串起来，替代人工。在效率和操作的安全上占有很大优势。也正是因为它小，所以能够在开发效率、可维护性、项目可控上都占到优势。
+</aside>
+</section>
+
+<section>
+<h3>系统复杂后</h3>
+<p><img src="/blog/images/2018/04/complex-chart.jpg"/></p>
+<aside class="notes">
+  但是系统不可能总是这么简单，随着像标准运维这类复杂、全业务 SaaS 的开发。我们更需要系统工程的思维去开发项目。什么意思？也就是要将项目中各个环节的部分找出来，对这些部分进行分析、预测、评估，最后进行综合，以使得项目开发最符合预期。
+</aside>
+</section>
+
+<section data-background="/blog/images/2018/04/standard.jpg">
+<h2 style="color:black">第二阶段：标准化</h2>
+<aside class="notes">
+    系统越复杂就越依赖管理来规范流程，降低风险。现代项目管理起源于曼哈顿计划，整个计划十几万工程师参与。这里面就需要极大地项目管理技巧。梳理开发流程中的各个环节，随着环节建立标准化、规范化的流程。
+</aside>
+</section>
+
+<section>
+<h3>项目开发流程</h3>
+<p><img src="/blog/images/2018/04/development-process.png" height="500" width="400" /></p>
+<aside class="notes">
+    这是我们对项目从立项到验收，一个完整迭代周期的流程梳理。这是一个架子，有利于我们看到整个项目，其中的每一个环节都可以输出标准化的东西。
+</aside>
+</section>
+
+<section>
+<h3>原型设计</h3>
+<p><img src="/blog/images/2018/04/rp_design.png" /></p>
+<aside class="notes">
+    因为我们对外的 SaaS 出自同一个品牌，应该具有同一个设计风格，但这个风格具体的细节是怎么样的？如果是对内的，是不是也会有一个风格。这些风格是不是能形成一个完整的用户设计规范？
+</aside>
+</section>
+
+<section>
+<h3>编码规范</h3>
+<p><img src="/blog/images/2018/04/sublime-python.jpg" /></p>
+<aside class="notes">
+    编码规范主要是在开发过程中对编码行为加以约束，以提高代码质量、保持代码风格一致。这是为了降低迭代成本、增强安全性。
+</aside>
+</section>
+
+<section>
+<h3>测试规范</h3>
+<p><img src="/blog/images/2018/04/deployment-qa-test.jpg" /></p>
+<aside class="notes">
+    测试包括，单元测试、集成测试、功能测试、安全测试等环节。在不同的测试环节，都可以进行实践，沉淀相关的文档，建立项目规范。
+</aside>
+</section>
+
+<section>
+<h3>交付规范</h3>
+<p><img src="/blog/images/2018/04/deliver.jpg" /></p>
+<aside class="notes">
+    在我们将 SaaS 交付给企业，交付给终端用户使用时，需要满足怎样的要求，比如，变更版本号、提供更新日志、测试报告等。同样，如果根据耗时的不同，可以制订出不同的标准，这样既利于排期、又增强了对项目的可控性。
+</aside>
+</section>
+
+<section>
+<h3>人力评估</h3>
+<aside class="notes">
+    人力评估包括对人和项目两个方面。对个人需要建立技能评价体系，弄清楚哪些人擅长哪些技术，哪些人开发速度快，哪些人开发质量高。对项目需要建立
+</aside>
+</section>
+
+<section>
+<h3>执行?</h3>
+<p><img src="/blog/images/2018/04/implement.jpg" /></p>
+<aside class="notes">
+    通过规范化增加了繁琐的流程，保证了项目质量、增强了对项目的可控性。但是规范并不都能 100%执行
+</aside>
+</section>
+
+<section>
+<h3> Gitlab CI/Jenkins</h3>
+<aside class="notes">
+CI ，能帮助团队落地规范。
+</aside>
+</section>
+
+<section data-background="/blog/images/2018/04/scene.jpg">
+<h2 style="color:black">第三阶段：场景输出</h2>
+<aside class="notes">
+    如果只是罗列这些标准化的 SaaS 开发环节，无疑会给 SaaS 带来承重的负担。这样就是去了效率。那么为什么不能直接针对场景给出给出答案呢？
+</aside>
+</section>
+
+<section>
+<h3>多版本</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>前后端分离</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>工具库</h3>
+<aside class="notes">
+    首先是工具库的建立。在 SaaS 开发过程中，我们需要去积累并建立自己的工具库。将遇到的场景解决方案，沉淀到工具中。通过这个工具，当再次遇到这个场景时，能够快速解决，或者能加速解决。比如，需要一个生成邮件图片的场景，就可以积累一个相应的工具包。
+</aside>
+</section>
+
+<section>
+<h3>第三方库</h3>
+<aside class="notes">
+    我们能够遇到的场景总是有限的。需要借助社区已经沉淀的工具库来加速开发、提升效率。
+</aside>
+</section>
+
+<section>
+<h3>标准多，工具多，选择多。更快的选择实现方式？</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>方案化</h3>
+<aside class="notes">
+场景化解决了项目各个环节多样化的问题。有的 SaaS 需要国际化，有的不需要国际化，国际化就是一个场景。一个项目又是由很多的场景构成。方案化就是要将这些场景串起来，形成一个完整的解决方案，而不是一个个零散的片段。
+
+比如，一个单人开发的项目，给出一个 magicbox + mako的解决方案，针对不同的人力，不同的技术栈，不同的排期，不同的项目需求，可以给出一个完整的技术方案。主要解决的问题在人力、技术、排期有限的条件下，满足项目需求。
+</aside>
+</section>
+
+<section data-background="/blog/images/2018/04/solution.png">
+<h2 style="color:black">第四阶段：咨询服务</h2>
+<aside class="notes">
+提供完整开发周期的咨询服务，输出影响力
+</aside>
+</section>
+
+<section>
+<h3>建立评级模型</h3>
+<ul>
+<li class="fragment" >模块可拆分</li>
+<li class="fragment" >平行可扩展</li>
+<li class="fragment" >操作可审计</li>
+<li class="fragment" >更新可通知</li>
+<aside class="notes">  
+核心问题：怎么样的 SaaS 才是最理想的？
+</aside>
+</section>
+
+<section>
+<h3>项目管理</h3>
+<aside class="notes">
+项目管理能力的输出
+</aside>
+</section>
+
+
+<section>
+<h3>项目管理</h3>
+<aside class="notes">
+项目管理能力的输出
+</aside>
+</section>
+
+<section>
+<h3>培训</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>技术选型</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>规范</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>难点攻克</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h3>风险评估</h3>
+<aside class="notes">
+</aside>
+</section>
+
+<section>
+<h2>End</h2>
+</section>
+
+    <!-- End -->
+  </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>
