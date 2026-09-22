@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- !+回车 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>汤姆猫</title>
+    <style>
+        body {
+            /* 设置文本居中 */
+             position: relative;
+          
+            margin: 0px;
+            padding: 0px;
+            /* width: 410px;
+            height: 650px; */
+            text-align: center;
+            
+
+        }
+    /* #section pix{
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            text-align: center;
+
+
+        } */
+        /* #pix{
+            position: absolute;
+            
+
+           
+        }
+ 
+ #pix div:nth-of-type(1){
+    background-image:url(buttons/cymbal.png);
+    width: 60px;
+    height: 60px;
+    top: 400px;
+    left: 400px;
+ }
+ #pix div:nth-of-type(2){
+    background-image:url(buttons/drink.png);
+    width: 60px;
+    height: 60px;
+    top: 500px;
+    left: 400px;
+ }
+ #pix div:nth-of-type(3){
+    background-image:url(buttons/eat.png);
+    width: 60px;
+    height: 60px;
+    top: 600px;
+    left: 400px;
+ }
+ #pix div:nth-of-type(4){
+    background-image:url(buttons/fart.png);
+    width: 60px;
+    height: 60px;
+    top: 800px;
+    left: 600px;
+ }
+ #pix div:nth-of-type(5){
+    background-image:url(buttons/pie.png);
+    width: 60px;
+    height: 60px;
+    top: 900px;
+    left: 600px;
+ }
+ #pix div:nth-of-type(6){
+    background-image:url(buttons/scratch.png);
+    width: 60px;
+    height: 60px;
+    top: 1000px;
+    left: 600px;
+ } */
+        img {
+            width: 400px;
+            /* 定宽居中 */
+            /* margin: 0 auto; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 播放声音 -->
+    <!-- <section id="pix">
+        <img src="buttons/cymbal.png" alt="右耳">
+        <img src="buttons/drink.png" alt="喝水">
+        <img src="buttons/eat.png" alt="左嘴">
+        <img src="buttons/fart.png" alt="尾巴">
+        <img src="buttons/pie.png" alt="派">
+        <img src="buttons/scratch.png" alt="左耳">
+    </section> -->
+
+<section id="pix">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</section>
+    <audio src="sounds/scratch.m4a"></audio>
+    <!-- <img src="buttons/cymbal.png" alt="右耳">
+        <img src="buttons/drink.png" alt="喝水" onclick='playAction("drink",80,30);'>
+        <img src="buttons/eat.png" alt="左嘴">
+        <img src="buttons/fart.png" alt="尾巴">
+        <img src="buttons/pie.png" alt="派">
+        <img src="buttons/scratch.png" alt="左耳"> -->
+
+    <img src="angry/angry_00.jpg" alt="" srcset="">
+    <script>
+        var img = document.getElementsByTagName("img")[0];
+        // var b=document.getElementById("button");
+  
+        img.onclick = function (e) {
+            // e事件对象
+            // console.log(e);
+            // alert(e.offsetX);
+            // alert(e.offsetY);
+            console.log(e.offsetX + ":" + e.offsetY);
+            if (e.offsetX > 83 && e.offsetY > 106 && e.offsetX < 116 && e.offsetY < 194) {
+                playAction("scratch", 55, 15);
+            }
+            if (e.offsetX > 253 && e.offsetY > 126 && e.offsetX < 307 && e.offsetY < 173) {
+                playAction("cymbal", 12, 2);
+            }
+            if (e.offsetX > 167 && e.offsetY > 208 && e.offsetX < 240 && e.offsetY < 240) {
+                playAction("knockout", 80, 20);
+            }
+            if (e.offsetX > 146 && e.offsetY > 233 && e.offsetX < 198 && e.offsetY < 266) {
+                playAction("eat", 39, 12);
+            }
+            if (e.offsetX > 208 && e.offsetY > 262 && e.offsetX < 262 && e.offsetY < 272) {
+                playAction("drink", 80, 30);
+            }
+            if (e.offsetX > 147 && e.offsetY > 284 && e.offsetX < 248 && e.offsetY < 418) {
+                playAction("angry", 25, 0);
+            }
+            if (e.offsetX > 140 && e.offsetY > 478 && e.offsetX < 258 && e.offsetY < 528) {
+                playAction("stomach", 33, 0);
+            }
+            if (e.offsetX > 278 && e.offsetY > 482 && e.offsetX < 300 && e.offsetY < 567) {
+                playAction("fart", 27, 0);
+            }
+
+            if (e.offsetX > 149 && e.offsetY > 582 && e.offsetX < 187 && e.offsetY < 598) {
+                playAction("foot_right", 29, 0);
+            }
+            if (e.offsetX > 205 && e.offsetY > 581 && e.offsetX < 245 && e.offsetY < 595) {
+                playAction("foot_left", 29, 0);
+            }
+
+            // name做什么操作  total图片总数  声音从哪里开始播放
+            function playAction(name, total, start) {
+                animated(0);
+                function animated(i) {
+                    var index = i < 10 ? "0" + i : i;
+                    img.src = name + "/" + name + "_" + index + ".jpg";
+                    var audio = document.getElementsByTagName("audio")[0];
+					var isPlaying = audio.currentTime > 0 && !audio.paused && !audio.ended && audio.readyState > 2;
+			        console.log(isPlaying);
+
+                    if (i == start) {
+                        audio.src = "sounds/" + name + ".m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "drink" & i == 14) {
+                        
+                        audio.src = "sounds/pie.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "scratch") {
+                        audio.src = "sounds/scratch.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "cymbal") {
+                        audio.src = "sounds/cymbal.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "eat") {
+                        audio.src = "sounds/eat.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "angry") {
+					    audio.src = "sounds/angry.m4a";
+					    audio.load();
+					    audio.play();
+                    }
+                    if (!isPlaying && name == "konckout") {
+                        audio.src = "sounds/knockout.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "foot_right") {
+                        audio.src = "sounds/foot_right.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "foot_left") {
+                        audio.src = "sounds/foot_left.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+                    if (!isPlaying && name == "fart") {
+                        audio.src = "sounds/fart.m4a";
+                        audio.load();
+                        audio.play();
+                    }
+
+                    if (i < total) {
+                        setTimeout(function () {
+                            animated(i + 1);
+                        }, 100);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
