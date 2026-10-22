@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /blog/tags/
+Allow: /blog/archives/
+Allow: /presentation/
+Disallow: /static/
+Disallow: /demo/
+Sitemap: https://www.chenshaowen.com/sitemap.xml

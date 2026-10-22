@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRHEYFQGW4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-TRHEYFQGW4');
+        </script>
+        <title>KubeSphere 开源之研发流程思考 - 陈少文</title>
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/reveal.min.css">
+		<link rel="stylesheet" href="/static/libs/reveal.js/3.5.0/css/theme/league.min.css">
+		<!--[if lt IE 9]>
+		<script src="/static/libs/reveal.js/3.5.0/lib/js/html5shiv.js %}"></script>
+		<![endif]-->
+		<script>
+		var srcUrlPrefix = '/static/libs/reveal.js/3.5.0/';
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = srcUrlPrefix + (window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css');
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+    <body>
+	<div class="reveal">
+        <div class="slides">
+        <!-- Start -->
+
+<section data-markdown>
+    <script type="text/template">
+        ## KubeSphere 开源之研发流程思考
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 演进过程也是开源的重要环节
+    </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- 开源包括，代码、社区，还有整个协作的过程
+- 指导其他团队
+    - 不同规模。从小到大
+    - 不同阶段。从好到优
+- 技术输出
+    - 文档方案。怎么部署、采用什么框架。
+    - 技术架构。什么场景、怎么解耦，为什么选 Operator
+    - 开发模式。CICD 工具、项目管理
+    - 工具、组件选择。Prow、Minio、GitHub
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 主要的优化思路
+    </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- 自治而平等
+    不区分内部、外部，统一的协作方式
+- 公开透明
+    不要小圈子沟通、私底下操作，要正大光明
+- 可查可追踪
+    每个操作可以控制、可以审计，推行 GitOps
+- 自动化流程
+    让程序接管流程，让人管理权限
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 项目文档
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+- ~~Internal GitLab~~
+- 项目放 GitHub ，无论是否涉及商业。可以使用私有 Repo 控制
+- ~~Internal Confluence/ shimo.io~~
+- GitHub Issues/Discussions，没人查阅、维护的文档如同废纸
+- ~~表格 项目管理~~
+- GitHub Projects，学习 K8s，使用 Projects 通过 Issues 进行项目管理
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- ~~强调个人~~
+- 关注 team，在 GitHub 建立 SIG Team，以 Team 为单位进行分配、管理
+- ~~没有 FAQ~~
+- 需要一套完整的 FAQ 录入、沉淀、转换的机制
+- ~~Rep\Docs 风格不一致，缺乏统一规范~~
+- 统一风格，将标准和模板公开，降低学习成本
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 开发环境
+    </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- ~~手动更新环境，包括 Dev、Prow 、持续部署等~~
+- GitHub Actions /Argo CD 重新部署、更新服务，禁止登陆机器
+- ~~优惠券、自主安装~~
+- GitHub Actions 统一使用 Terraform 管理环境，能满足大部分，也可以直接提供给社区开发者
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- ~~官网、Prow、文档配置分散~~
+- 支撑系统账户，统一存放和授权管理
+- ~~自己的 DockerHub 测试镜像功能~~
+- 提供统一的 Harbor 镜像基础设施，统一分配账户，提供子账户、临时账户
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 研发过程
+    </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- ~~人工操作~~
+- 自动化一切。禁止登陆机器更新镜像，提供 Actions 流程远程更新
+- ~~特权操作~~
+- 人工授权，程序操作。禁止人工 Merge，利用 Prow 驱动
+- ~~在小圈子交流~~
+- 尽量在 Issues 交流，不要在 Private Slack（可替换为 Public Slack 的 thread） 、WeChat 交流
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+- ~~开发自行推送 kubespheredev 镜像~~
+- 权限太大，不可审计，建议采用 Actions 推送
+- ~~讨论阶段，at 个人~~
+- 没有进入执行阶段之前，应该提醒 GitHub Team ，而非直接 at 个人，等待 Team 成员的处理
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 测试自动化
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+- ~~不做 UI 测试~~
+- 即使一两个 Case 也非常有用。保持测试人员对技术的关注，通过 Actions 验证其他环境
+- ~~手动测试云厂商兼容性~~
+- 文档、脚本、自动化，三步走。通过 Terraform 对接，可以一键创建、测试、销毁
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+- ~~没有生产环境的 Ha 测试~~
+- 引入 Chaos Mesh ，模拟生产环境，注入故障，提前发现错误
+- ~~API 测试工作不透明~~
+- 直接放到 SIG 孵化即可，或能找到同行者
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+        ### 版本发布
+    </script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+- ~~人工发版~~
+- 增加 CheckList，应该自动化发版
+- ~~用户只知道大版本和 Latest~~
+- 加大宣传，SIG-Release 要运行起来，Nightly 、Weekly 
+    </script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## 持续思考更新中
+</script>
+</section>
+
+    <!-- End -->
+  </div>
+</div>
+<script src="/static/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+<script src="/static/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c/t',
+transition: 'slide', // none/fade/slide/convex/concave/zoom
+dependencies: [
+{ src: srcUrlPrefix + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: srcUrlPrefix + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: srcUrlPrefix + 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: srcUrlPrefix + 'plugin/zoom-js/zoom.js', async: true },
+{ src: srcUrlPrefix + 'plugin/notes/notes.js', async: true }
+]
+});
+</script>
+</body>
+</html>
