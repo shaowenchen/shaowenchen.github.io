@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Components on Shaowen Chen's Website</title><link>https://www.chenshaowen.com/en/tags/components/</link><description>Recent content in Components on Shaowen Chen's Website</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy;2016 - {year}, All Rights Reserved.</copyright><lastBuildDate>Fri, 19 Jan 2018 00:00:00 +0000</lastBuildDate><sy:updatePeriod>weekly</sy:updatePeriod><atom:link href="https://www.chenshaowen.com/en/tags/components/atom.xml" rel="self" type="application/rss+xml"/><item><title>Common Frontend Component List</title><link>https://www.chenshaowen.com/en/blog/component-list-of-front-library.html</link><pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate><atom:modified>Fri, 19 Jan 2018 00:00:00 +0000</atom:modified><guid>https://www.chenshaowen.com/en/blog/component-list-of-front-library.html</guid><description>toastr
+Toast notification popups
+artDialog
+Dialog component
+DataTables
+A jQuery-based table plugin
+KendoUI
+A very complete UI framework, with many components
+wangEditor
+Web rich text editor
+jstree
+Web tree structure component
+highcharts
+echarts
+D3js
+Data charts
+select2
+Dropdown select
+validate
+jQuery-based form validation
+Vuejs
+Can be used for two-way data binding, and also for building single-page applications</description><dc:creator>WeChat Official Account</dc:creator><category>Frontend</category><category>JavaScript</category><category>Components</category><category>R&amp;D</category><category>Learning</category><category>Libraries</category></item><item><title>Vue.js Component Library</title><link>https://www.chenshaowen.com/en/blog/vuejs-component-library.html</link><pubDate>Thu, 03 Aug 2017 21:53:02 +0000</pubDate><atom:modified>Thu, 03 Aug 2017 21:53:02 +0000</atom:modified><guid>https://www.chenshaowen.com/en/blog/vuejs-component-library.html</guid><description>1. UI Components element - A Vue 2 web UI toolkit from Ele.me Vux - A component library based on Vue and WeUI iview - An open-source UI component library based on Vuejs mint-ui - Mobile UI elements for Vue 2 muse-ui - A responsive UI library with consistent styling across all three platforms vue-material - Build beautiful apps with Vue Material and Vue 2 vuetify - A Vue JS 2 component framework built for mobile Keen-UI - A lightweight collection of basic UI components vonic - Quickly build mobile single-page applications vue-multiselect - A Vue.</description><dc:creator>WeChat Official Account</dc:creator><category>Frontend</category><category>Tools</category><category>Components</category><category>Vuejs</category><category>Reposted</category></item><item><title>Django Third-Party Component List</title><link>https://www.chenshaowen.com/en/blog/third-party-component-list-of-django.html</link><pubDate>Thu, 06 Jul 2017 09:27:50 +0000</pubDate><atom:modified>Thu, 06 Jul 2017 09:27:50 +0000</atom:modified><guid>https://www.chenshaowen.com/en/blog/third-party-component-list-of-django.html</guid><description>Awesome-Django
+A collection of Django apps, projects, and resources.
+Django-Packages
+A large number of Django third-party components.
+Django-Mptt
+Store hierarchical data structures in the database.
+Django-Rest-Framework
+Automatically generate RESTful APIs.
+Django-Rest-Framework-Jwt
+Provides token authentication for Django-Rest-Framework.
+Django-Tastypie
+Automatically generate RESTful APIs.
+Django-Cors-Headers
+Solves the problem of cross-origin access.
+Django-Ckeditor
+Rich text support for Django.</description><dc:creator>WeChat Official Account</dc:creator><category>Django</category><category>Python</category><category>Backend</category><category>Components</category><category>R&amp;D</category></item></channel></rss>
